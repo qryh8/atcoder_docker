@@ -1,0 +1,22 @@
+services:
+  atcoder:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: atcoder_container
+    environment:
+      - TZ=Asia/Tokyo
+    volumes:
+      - ./env:/workspace/env
+      - ./templates:/workspace/templates
+      - ./.clang-tidy:/workspace/.clang-tidy
+      - ./.clang-format:/workspace/.clang-format
+      - ./.vscode:/workspace/.vscode
+      - ./scripts:/workspace/scripts
+      - ./README.md:/workspace/README.md
+    ports:
+      - "8080:8080"
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    command: /bin/bash -c "source /workspace/scripts/init.sh && /bin/bash"

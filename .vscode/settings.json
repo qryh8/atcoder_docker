@@ -1,0 +1,19 @@
+{
+    "editor.formatOnSave": true, // 保存時に自動でフォーマット
+    "C_Cpp.clang_format_style": "file", // .clang-format ファイルを使用
+    "C_Cpp.clang_format_fallbackStyle": "Google", // .clang-format がない場合のデフォルトスタイル
+    "C_Cpp.default.cppStandard": "c++20", // C++の標準をC++20に設定
+    "C_Cpp.default.compilerPath": "/usr/bin/g++", // コンパイラのパスを設定
+    "C_Cpp.formatting": "clangFormat", // clang-formatを使用する
+    "C_Cpp.intelliSenseEngine": "disabled", // IntelliSenseエンジンをデフォルトに設定
+    "C_Cpp.intelliSenseEngineFallback": "disabled", // IntelliSenseのフォールバックを無効化
+    "C_Cpp.clang_tidy.enabled": true, // clang-tidyを有効化
+    "C_Cpp.clang_tidy.path": "/workspace/.clang-tidy", // clang-tidyの設定パス
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "explicit"
+    },
+    "python.defaultInterpreterPath": "/usr/bin/python",
+    "python.formatting.provider": "black",
+    "python.analysis.autoSearchPaths": true,
+    "python.analysis.useLibraryCodeForTypes": true
+}

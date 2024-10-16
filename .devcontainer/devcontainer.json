@@ -1,0 +1,53 @@
+{
+    "name": "atcoder_container",   // コンテナの名前
+    "dockerFile": "../Dockerfile",         // Dockerfile の指定（プロジェクトのルートにある Dockerfile を参照）
+    "context": "..",                       // コンテナのビルドコンテキストを指定
+    "workspaceFolder": "/workspace",       // デフォルトのワークスペースディレクトリ
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-vscode.cpptools",
+                "llvm-vs-code-extensions.vscode-clangd",
+                "ms-azuretools.vscode-docker",
+                "streetsidesoftware.code-spell-checker",
+                "formulahendry.code-runner",
+                "ms-python.python",
+                "ms-python.vscode-pylance",
+                "ms-python.flake8",
+                "ms-python.black-formatter",
+                "ms-python.pylint"
+            ],
+            "settings": {
+                "editor.formatOnSave": true,
+                "C_Cpp.clang_format_style": "file",
+                "C_Cpp.clang_format_fallbackStyle": "Google",
+                "C_Cpp.default.cppStandard": "c++20",
+                "C_Cpp.default.compilerPath": "/usr/bin/g++",
+                "C_Cpp.formatting": "clangFormat",
+                "C_Cpp.intelliSenseEngine": "default",
+                "C_Cpp.intelliSenseEngineFallback": "disabled",
+                "C_Cpp.clang_tidy.enabled": true,
+                "C_Cpp.clang_tidy.path": "/workspace/.clang-tidy",
+                "editor.codeActionsOnSave.source.fixAll.eslint": true,
+                "python.formatting.provider": "black",
+                "python.analysis.autoSearchPaths": true,
+                "python.analysis.useLibraryCodeForTypes": true,
+                "python.defaultInterpreterPath": "/usr/bin/python3"
+            }
+        }
+    },
+    "postCreateCommand": "source /workspace/scripts/init.sh",
+    "runArgs": ["--privileged"],
+    "mounts": [
+        "source=${localWorkspaceFolder}/env,target=/workspace/env,type=bind",
+        "source=${localWorkspaceFolder}/.clang-format,target=/workspace/.clang-format,type=bind",
+        "source=${localWorkspaceFolder}/.clang-tidy,target=/workspace/.clang-tidy,type=bind",
+        "source=${localWorkspaceFolder}/.vscode,target=/workspace/.vscode,type=bind",
+        "source=${localWorkspaceFolder}/scripts,target=/workspace/scripts,type=bind",
+        "source=${localWorkspaceFolder}/templates,target=/workspace/templates,type=bind",
+        "source=${localWorkspaceFolder}/README.md,target=/workspace/README.md,type=bind"
+    ],
+    "overrideCommand": true,  // 新しいコンテナで実行
+    "updateContentCommand": "true",  // 必ず新しいコンテナで内容を更新
+    "shutdownAction": "stopContainer"  // 開発が終わったらコンテナを自動停止
+}
